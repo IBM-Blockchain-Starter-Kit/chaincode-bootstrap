@@ -31,7 +31,7 @@ type ContractChaincode struct {
 
 // Init nothing to initialize
 func (t *ContractChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
-	logger.Info("########### ping Init ###########")
+	logger.Info("########### contract Init ###########")
 	//nothing to initialize just return
 	return shim.Success(nil)
 
@@ -44,17 +44,17 @@ func (t *ContractChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response
 	function, args := stub.GetFunctionAndParameters()
 
 	if function == "Health" {
-		// ping chaincode
+		// contract chaincode
 		return t.Health(stub, args)
 	}
 
-	logger.Errorf("Unknown action, check the first argument, must be 'ping'. But got: %v", args[0])
-	return shim.Error(fmt.Sprintf("Unknown action, check the first argument, must be 'ping'. But got: %v", args[0]))
+	logger.Errorf("Unknown action, check the first argument, must be 'Health'. But got: %v", args[0])
+	return shim.Error(fmt.Sprintf("Unknown action, check the first argument, must be 'Health'. But got: %v", args[0]))
 }
 
 // Health returns Ok if successful
 func (t *ContractChaincode) Health(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	logger.Infof("Chaincode pinged successfully")
+	logger.Infof("Chaincode healthy")
 	return shim.Success([]byte("Ok"))
 }
 
