@@ -1,0 +1,14 @@
+{
+    "org1": {
+        "chaincode": [
+            {
+                "name": "contract",
+                "path": "src/chaincode",
+                "channels": [ "defaultchannel" ],
+                "init_args": [],
+                "instantiate": true,
+                "install": true
+            }
+        ]
+    }
+}
