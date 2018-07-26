@@ -2,8 +2,8 @@
     "org1": {
         "chaincode": [
             {
-                "name": "contract",
-                "path": "src/chaincode",
+                "name": "ping",
+                "path": "chaincode/ping",
                 "channels": [ "defaultchannel" ],
                 "init_args": [],
                 "instantiate": true,
