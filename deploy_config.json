@@ -4,7 +4,9 @@
             {
                 "name": "ping",
                 "path": "chaincode/ping",
-                "channels": [ "defaultchannel" ],
+                "channels": [
+                    "defaultchannel"
+                ],
                 "init_args": [],
                 "instantiate": true,
                 "install": true

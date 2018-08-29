@@ -1,5 +1,5 @@
 /*
-Copyright IBM Corp. 2017 All Rights Reserved.
+Copyright IBM Corp. 2017,2018 All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import (
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
 
-var logger = shim.NewLogger("contract health")
+var logger = shim.NewLogger("ContractChaincodeLog")
 
 // ContractChaincode implementation
 type ContractChaincode struct {
@@ -31,36 +31,36 @@ type ContractChaincode struct {
 
 // Init nothing to initialize
 func (t *ContractChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
-	logger.Info("########### contract Init ###########")
+	logger.Info("########### Contract Init ###########")
 	//nothing to initialize just return
 	return shim.Success(nil)
-
 }
 
 // Invoke Support for calling chaincode to ensure operation is up
 func (t *ContractChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
-	logger.Info("########### contract Invoke ###########")
+	logger.Info("########### Contract Invoke ###########")
 
 	function, args := stub.GetFunctionAndParameters()
-
-	if function == "Health" {
+	switch function {
+	case "Health":
 		// contract chaincode
 		return t.Health(stub, args)
 	}
 
-	logger.Errorf("Unknown action, check the first argument, must be 'Health'. But got: %v", args[0])
-	return shim.Error(fmt.Sprintf("Unknown action, check the first argument, must be 'Health'. But got: %v", args[0]))
+	errorMsg := fmt.Sprintf("Unknown action, please check the first argument, expecting 'Health'. Instead, got: %s", args[0])
+	logger.Errorf(errorMsg)
+	return shim.Error(errorMsg)
 }
 
 // Health returns Ok if successful
 func (t *ContractChaincode) Health(stub shim.ChaincodeStubInterface, args []string) pb.Response {
-	logger.Infof("Chaincode healthy")
+	logger.Infof("Chaincode is healthy.")
 	return shim.Success([]byte("Ok"))
 }
 
 func main() {
 	err := shim.Start(new(ContractChaincode))
 	if err != nil {
-		logger.Errorf("Error starting Contract chaincode: %s", err)
+		logger.Errorf("Error starting ContractChaincode: %s", err)
 	}
 }
