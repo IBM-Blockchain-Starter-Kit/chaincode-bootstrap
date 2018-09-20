@@ -47,7 +47,7 @@ func (t *ContractChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response
 		return t.Health(stub, args)
 	}
 
-	errorMsg := fmt.Sprintf("Unknown action, please check the first argument, expecting 'Health'. Instead, got: %s", args[0])
+	errorMsg := fmt.Sprintf("Unknown action, please check the first argument, expecting 'Health'. Instead, got: %s", function)
 	logger.Errorf(errorMsg)
 	return shim.Error(errorMsg)
 }
