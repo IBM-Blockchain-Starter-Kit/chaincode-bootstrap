@@ -1,16 +1,15 @@
 {
-    "org1": {
-        "chaincode": [
-            {
-                "name": "ping",
-                "path": "chaincode/ping",
-                "channels": [
-                    "defaultchannel"
-                ],
-                "init_args": [],
-                "instantiate": true,
-                "install": true
-            }
-        ]
-    }
+  "Org1MSP": {
+    "chaincode": [
+      {
+        "name": "ping",
+        "path": "chaincode/ping",
+        "channels": [
+          "defaultchannel"
+        ],
+        "instantiate": true,
+        "install": true
+      }
+    ]
+  }
 }
