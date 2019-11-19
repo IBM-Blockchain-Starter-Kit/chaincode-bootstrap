@@ -2,8 +2,8 @@
   "Org1MSP": {
     "chaincode": [
       {
-        "name": "ping",
-        "path": "chaincode/ping",
+        "name": "mycontract",
+        "path": "chaincode/asset",
         "channels": [
           "defaultchannel"
         ],
